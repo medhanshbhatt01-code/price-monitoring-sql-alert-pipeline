@@ -3,11 +3,11 @@ import sqlite3
 from bs4 import BeautifulSoup
 import undetected_chromedriver as uc
 import requests
-
+from TOKENandID import TOKEN,ID
 
 def laptop_check():
 
-    # DATABASE CONNECTION
+    
     conn = sqlite3.connect("price_history.db")
     cursor = conn.cursor()
 
@@ -20,7 +20,7 @@ def laptop_check():
     )
     """)
 
-    # BROWSER SETUP
+    
     options = uc.ChromeOptions()
 
     options.add_argument(
@@ -43,8 +43,8 @@ def laptop_check():
 
         time.sleep(5)
 
-        BOT_TOKEN = "YOUR_BOT_TOKEN"
-        CHAT_ID = "YOUR_CHAT_ID"
+        BOT_TOKEN = TOKEN 
+        CHAT_ID = ID
 
         message = "Price dropped"
 
@@ -70,7 +70,7 @@ def laptop_check():
 
             print(f"Current price: {current_price}")
 
-            # FETCH LAST SAVED PRICE
+            
             cursor.execute("""
             SELECT price FROM price_history
             ORDER BY id DESC LIMIT 1
